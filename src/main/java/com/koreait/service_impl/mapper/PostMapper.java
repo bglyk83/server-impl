@@ -1,7 +1,7 @@
-package com.koreait.jpa.mapper;
+package com.koreait.service_impl.mapper;
 
-import com.koreait.jpa.dto.PostResponseDto;
-import com.koreait.jpa.entity.PostEntity;
+import com.koreait.service_impl.dto.PostResponseDto;
+import com.koreait.service_impl.entity.PostEntity;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 

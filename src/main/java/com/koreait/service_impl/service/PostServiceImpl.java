@@ -1,9 +1,9 @@
-package com.koreait.jpa.service;
+package com.koreait.service_impl.service;
 
-import com.koreait.jpa.dto.PostRequestDto;
-import com.koreait.jpa.dto.PostResponseDto;
-import com.koreait.jpa.entity.PostEntity;
-import com.koreait.jpa.mapper.PostMapper;
+import com.koreait.service_impl.dto.PostRequestDto;
+import com.koreait.service_impl.dto.PostResponseDto;
+import com.koreait.service_impl.entity.PostEntity;
+import com.koreait.service_impl.mapper.PostMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

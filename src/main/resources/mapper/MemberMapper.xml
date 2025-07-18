@@ -1,36 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.koreait.jpa.mapper.MemberMapper">
+<mapper namespace="com.koreait.service_impl.mapper.MemberMapper">
 
     <!-- 회원가입 -->
-    <insert id="insertMember" parameterType="com.koreait.jpa.entity.MemberEntity" useGeneratedKeys="true" keyProperty="id">
+    <insert id="insertMember" parameterType="com.koreait.service_impl.entity.MemberEntity" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO member (username, password, email, nickname)
         VALUES (#{username}, #{password}, #{email}, #{nickname})
     </insert>
 
     <!-- 사용자명으로 회원 조회 -->
-    <select id="findByUsername" resultType="com.koreait.jpa.entity.MemberEntity">
+    <select id="findByUsername" resultType="com.koreait.service_impl.entity.MemberEntity">
         SELECT id, username, password, email, nickname, created_at, updated_at
         FROM member
         WHERE username = #{username}
     </select>
 
     <!-- 이메일로 회원 조회 -->
-    <select id="findByEmail" resultType="com.koreait.jpa.entity.MemberEntity">
+    <select id="findByEmail" resultType="com.koreait.service_impl.entity.MemberEntity">
         SELECT id, username, password, email, nickname, created_at, updated_at
         FROM member
         WHERE email = #{email}
     </select>
 
     <!-- 회원 정보 수정 -->
-    <update id="updateMember" parameterType="com.koreait.jpa.entity.MemberEntity">
+    <update id="updateMember" parameterType="com.koreait.service_impl.entity.MemberEntity">
         UPDATE member
         SET email = #{email}, nickname = #{nickname}, updated_at = CURRENT_TIMESTAMP
         WHERE id = #{id}
     </update>
 
     <!-- 회원 정보 조회 -->
-    <select id="findById" resultType="com.koreait.jpa.entity.MemberEntity">
+    <select id="findById" resultType="com.koreait.service_impl.entity.MemberEntity">
         SELECT id, username, password, email, nickname, created_at, updated_at
         FROM member
         WHERE id = #{id}

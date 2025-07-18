@@ -1,12 +1,12 @@
-package com.koreait.jpa.controller;
+package com.koreait.service_impl.controller;
 
-import com.koreait.jpa.component.JwtTokenProvider;
-import com.koreait.jpa.dto.ApiResponseDto;
-import com.koreait.jpa.dto.PostRequestDto;
-import com.koreait.jpa.dto.PostResponseDto;
-import com.koreait.jpa.entity.MemberEntity;
-import com.koreait.jpa.service.MemberService;
-import com.koreait.jpa.service.PostService;
+import com.koreait.service_impl.component.JwtTokenProvider;
+import com.koreait.service_impl.dto.ApiResponseDto;
+import com.koreait.service_impl.dto.PostRequestDto;
+import com.koreait.service_impl.dto.PostResponseDto;
+import com.koreait.service_impl.entity.MemberEntity;
+import com.koreait.service_impl.service.MemberService;
+import com.koreait.service_impl.service.PostService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

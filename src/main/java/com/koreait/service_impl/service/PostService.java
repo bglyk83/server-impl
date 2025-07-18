@@ -1,7 +1,7 @@
-package com.koreait.jpa.service;
+package com.koreait.service_impl.service;
 
-import com.koreait.jpa.dto.PostRequestDto;
-import com.koreait.jpa.dto.PostResponseDto;
+import com.koreait.service_impl.dto.PostRequestDto;
+import com.koreait.service_impl.dto.PostResponseDto;
 import java.util.List;
 
 public interface PostService {

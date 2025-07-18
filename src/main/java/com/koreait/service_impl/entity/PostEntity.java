@@ -1,4 +1,4 @@
-package com.koreait.jpa.entity;
+package com.koreait.service_impl.entity;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

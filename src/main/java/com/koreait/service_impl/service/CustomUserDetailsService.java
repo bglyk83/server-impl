@@ -1,7 +1,7 @@
-package com.koreait.jpa.service;
+package com.koreait.service_impl.service;
 
-import com.koreait.jpa.entity.MemberEntity;
-import com.koreait.jpa.mapper.MemberMapper;
+import com.koreait.service_impl.entity.MemberEntity;
+import com.koreait.service_impl.mapper.MemberMapper;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -9,7 +9,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
-import org.springframework.http.HttpMethod;
 
 @Service
 public class CustomUserDetailsService implements UserDetailsService {

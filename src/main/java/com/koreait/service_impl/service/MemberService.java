@@ -1,9 +1,9 @@
-package com.koreait.jpa.service;
+package com.koreait.service_impl.service;
 
-import com.koreait.jpa.dto.LoginRequestDto;
-import com.koreait.jpa.dto.LoginResponseDto;
-import com.koreait.jpa.dto.SignupRequestDto;
-import com.koreait.jpa.entity.MemberEntity;
+import com.koreait.service_impl.dto.LoginRequestDto;
+import com.koreait.service_impl.dto.LoginResponseDto;
+import com.koreait.service_impl.dto.SignupRequestDto;
+import com.koreait.service_impl.entity.MemberEntity;
 
 public interface MemberService {
     void signup(SignupRequestDto signupRequestDto);

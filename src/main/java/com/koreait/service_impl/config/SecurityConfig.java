@@ -1,6 +1,6 @@
-package com.koreait.jpa.config;
+package com.koreait.service_impl.config;
 
-import com.koreait.jpa.component.JwtAuthenticationFilter;
+import com.koreait.service_impl.component.JwtAuthenticationFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;

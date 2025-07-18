@@ -1,4 +1,4 @@
-package com.koreait.jpa;
+package com.koreait.service_impl;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

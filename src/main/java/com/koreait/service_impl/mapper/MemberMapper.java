@@ -1,6 +1,6 @@
-package com.koreait.jpa.mapper;
+package com.koreait.service_impl.mapper;
 
-import com.koreait.jpa.entity.MemberEntity;
+import com.koreait.service_impl.entity.MemberEntity;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 

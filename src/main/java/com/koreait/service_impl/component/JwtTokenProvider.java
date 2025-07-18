@@ -1,4 +1,4 @@
-package com.koreait.jpa.component;
+package com.koreait.service_impl.component;
 
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;

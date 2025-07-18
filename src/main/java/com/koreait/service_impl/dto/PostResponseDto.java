@@ -1,4 +1,4 @@
-package com.koreait.jpa.dto;
+package com.koreait.service_impl.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
