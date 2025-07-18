@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>게시판 목록</title>
+</head>
+<body>
+    <h2>게시판</h2>
+    <button onclick="window.location.href='mypage.html'">마이페이지</button>
+    <button onclick="logout()">로그아웃</button>
+    <hr>
+    <div id="postFormSection" style="display:none;">
+        <h3>게시글 작성</h3>
+        <form id="postForm">
+            <label>제목: </label>
+            <input type="text" id="postTitle" required>
+            <br>
+            <label>내용: </label>
+            <textarea id="postContent" rows="4" required></textarea>
+            <br>
+            <button type="submit">작성</button>
+        </form>
+        <div id="postMessage"></div>
+    </div>
+    <hr>
+    <h3>게시글 목록</h3>
+    <button onclick="loadPosts()">새로고침</button>
+    <div id="posts"></div>
+    <script>
+    let token = localStorage.getItem('token');
+    let currentUser = localStorage.getItem('username');
+    if (token) document.getElementById('postFormSection').style.display = '';
+    document.getElementById('postForm')?.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const formData = {
+            title: document.getElementById('postTitle').value,
+            content: document.getElementById('postContent').value
+        };
+        try {
+            const response = await fetch('/api/posts', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token },
+                body: JSON.stringify(formData)
+            });
+            const result = await response.json();
+            if (result.success) {
+                document.getElementById('postMessage').innerHTML = '<div>작성 성공!</div>';
+                document.getElementById('postForm').reset();
+                loadPosts();
+            } else {
+                document.getElementById('postMessage').innerHTML = '<div>' + result.message + '</div>';
+            }
+        } catch {
+            document.getElementById('postMessage').innerHTML = '<div>작성 실패</div>';
+        }
+    });
+    async function loadPosts() {
+        const response = await fetch('/api/posts?page=1&size=10');
+        const result = await response.json();
+        const postsDiv = document.getElementById('posts');
+        postsDiv.innerHTML = '';
+        if (result.success) {
+            if (result.data.length === 0) {
+                postsDiv.innerHTML = '<div>게시글이 없습니다.</div>';
+                return;
+            }
+            result.data.forEach((post, idx) => {
+                const postElement = document.createElement('div');
+                postElement.innerHTML =
+                    (idx > 0 ? '<hr>' : '') +
+                    `<b>${idx + 1}. <a href="post_detail.html?id=${post.id}">${post.title}</a></b><br>
+                    (작성자: ${post.authorNickname}, 작성일: ${new Date(post.createdAt).toLocaleString()}, 조회수: ${post.viewCount})<br>
+                    내용: ${post.content}`;
+                postsDiv.appendChild(postElement);
+            });
+        }
+    }
+    loadPosts();
+    function logout() {
+        localStorage.removeItem('token');
+        localStorage.removeItem('username');
+        window.location.href = 'login.html';
+    }
+    </script>
+</body>
+</html> 

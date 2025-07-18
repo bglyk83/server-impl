@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>게시글 상세</title>
+</head>
+<body>
+    <div>
+        <button onclick="window.location.href='posts.html'">목록으로</button>
+        <button onclick="window.location.href='mypage.html'">마이페이지</button>
+        <button onclick="logout()">로그아웃</button>
+    </div>
+    <div>
+        <div id="title"></div>
+        <div id="meta"></div>
+        <div id="content"></div>
+        <div id="editSection" style="display:none;">
+            <button onclick="showEditForm()">수정</button>
+            <button onclick="deletePost()">삭제</button>
+        </div>
+        <div id="editFormSection" style="display:none;">
+            <input type="text" id="editTitle">
+            <textarea id="editContent" rows="4"></textarea>
+            <button onclick="submitEdit()">수정 완료</button>
+            <button onclick="hideEditForm()">취소</button>
+            <div id="editMessage"></div>
+        </div>
+    </div>
+    <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const postId = urlParams.get('id');
+    const token = localStorage.getItem('token');
+    const currentUser = localStorage.getItem('username');
+    let postData = null;
+    if (!postId) {
+        alert('잘못된 접근입니다.');
+        window.location.href = 'posts.html';
+    }
+    fetch('/api/posts/' + postId)
+    .then(res => res.json())
+    .then(result => {
+        if (result.success) {
+            postData = result.data;
+            document.getElementById('title').innerText = postData.title;
+            document.getElementById('meta').innerText = `작성자: ${postData.authorNickname} | 작성일: ${new Date(postData.createdAt).toLocaleString()} | 조회수: ${postData.viewCount}`;
+            document.getElementById('content').innerText = postData.content;
+            if (currentUser === postData.authorUsername) {
+                document.getElementById('editSection').style.display = '';
+            }
+        } else {
+            alert('게시글을 찾을 수 없습니다.');
+            window.location.href = 'posts.html';
+        }
+    });
+    function showEditForm() {
+        document.getElementById('editFormSection').style.display = '';
+        document.getElementById('editTitle').value = postData.title;
+        document.getElementById('editContent').value = postData.content;
+    }
+    function hideEditForm() {
+        document.getElementById('editFormSection').style.display = 'none';
+    }
+    async function submitEdit() {
+        const newTitle = document.getElementById('editTitle').value;
+        const newContent = document.getElementById('editContent').value;
+        try {
+            const response = await fetch(`/api/posts/${postId}`, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token },
+                body: JSON.stringify({ title: newTitle, content: newContent })
+            });
+            const result = await response.json();
+            if (result.success) {
+                alert('수정 완료');
+                location.reload();
+            } else {
+                document.getElementById('editMessage').innerHTML = '<div>' + result.message + '</div>';
+            }
+        } catch {
+            document.getElementById('editMessage').innerHTML = '<div>수정 실패</div>';
+        }
+    }
+    async function deletePost() {
+        if (confirm('정말 삭제하시겠습니까?')) {
+            try {
+                const response = await fetch(`/api/posts/${postId}`, {
+                    method: 'DELETE',
+                    headers: { 'Authorization': 'Bearer ' + token }
+                });
+                const result = await response.json();
+                if (result.success) {
+                    alert('삭제 완료');
+                    window.location.href = 'posts.html';
+                } else {
+                    alert('삭제 실패: ' + result.message);
+                }
+            } catch {
+                alert('삭제 실패');
+            }
+        }
+    }
+    function logout() {
+        localStorage.removeItem('token');
+        localStorage.removeItem('username');
+        window.location.href = 'login.html';
+    }
+    </script>
+</body>
+</html> 
