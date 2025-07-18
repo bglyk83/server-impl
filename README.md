@@ -11,9 +11,9 @@ Spring Boot 기반의 간단한 게시판 프로젝트입니다.
 ## 폴더 구조
 ```
 server-impl/
-├── src/main/java/com/koreait/jpa/
+├── src/main/java/com/koreait/service_impl/
 │   ├── controller/        # REST API 컨트롤러
-│   ├── service/           # 비즈니스 로직
+│   ├── service/           # 서비스 인터페이스/구현체
 │   ├── entity/            # JPA 엔티티
 │   ├── dto/               # 데이터 전송 객체
 │   ├── component/         # JWT 등 컴포넌트
