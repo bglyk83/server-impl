@@ -37,7 +37,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll() // OPTIONS 메서드 허용
                         .requestMatchers(
-                            "/login.html", "/posts.html", "/mypage.html", "/post_detail.html",
+                            "/login.html", "/signup.html", "/posts.html", "/mypage.html", "/post_detail.html", "/post_write.html",
                             "/css/**", "/js/**", "/images/**", "/static/**"
                         ).permitAll()
                         .requestMatchers("/api/member/signup", "/api/member/login").permitAll()

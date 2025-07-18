@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>게시글 작성</title>
+    <style>
+        body { font-family: 'Segoe UI', Arial, sans-serif; margin: 30px; }
+        h2 { margin-top: 24px; margin-bottom: 10px; }
+        form { margin-bottom: 20px; padding: 10px 0; border-bottom: 1px solid #ccc; }
+        label { display: block; margin: 8px 0 2px 0; }
+        input, textarea, button { margin-bottom: 8px; padding: 5px; font-size: 1em; }
+        button { min-width: 80px; cursor: pointer; }
+        #postMessage { margin-top: 5px; }
+    </style>
+</head>
+<body>
+    <h2>게시글 작성</h2>
+    <form id="postForm">
+        <label>제목</label>
+        <input type="text" id="postTitle" required>
+        <label>내용</label>
+        <textarea id="postContent" rows="4" required></textarea>
+        <button type="submit">작성</button>
+        <div id="postMessage"></div>
+    </form>
+    <button onclick="window.location.href='posts.html'">목록으로</button>
+    <script>
+    const token = localStorage.getItem('token');
+    if (!token) window.location.href = 'login.html';
+    document.getElementById('postForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const formData = {
+            title: document.getElementById('postTitle').value,
+            content: document.getElementById('postContent').value
+        };
+        try {
+            const response = await fetch('/api/posts', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token },
+                body: JSON.stringify(formData)
+            });
+            const result = await response.json();
+            if (result.success) {
+                document.getElementById('postMessage').innerHTML = '<div>작성 성공!</div>';
+                setTimeout(() => { window.location.href = 'posts.html'; }, 800);
+            } else {
+                document.getElementById('postMessage').innerHTML = '<div>' + result.message + '</div>';
+            }
+        } catch {
+            document.getElementById('postMessage').innerHTML = '<div>작성 실패</div>';
+        }
+    });
+    </script>
+</body>
+</html> 

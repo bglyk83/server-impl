@@ -4,6 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>게시글 상세</title>
+    <style>
+        body { font-family: 'Segoe UI', Arial, sans-serif; margin: 30px; }
+        h2 { margin-top: 24px; margin-bottom: 10px; }
+        button { min-width: 80px; margin-right: 8px; cursor: pointer; }
+        #title { font-weight: bold; font-size: 1.2em; margin-bottom: 4px; }
+        #meta { font-size: 0.95em; color: #444; margin-bottom: 8px; }
+        #content { margin-bottom: 12px; }
+        #editFormSection { margin-top: 10px; }
+        input, textarea { margin-bottom: 8px; padding: 5px; font-size: 1em; }
+        hr { margin: 18px 0; }
+    </style>
 </head>
 <body>
     <div>
@@ -11,6 +22,7 @@
         <button onclick="window.location.href='mypage.html'">마이페이지</button>
         <button onclick="logout()">로그아웃</button>
     </div>
+    <hr>
     <div>
         <div id="title"></div>
         <div id="meta"></div>
