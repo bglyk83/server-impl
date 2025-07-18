@@ -29,8 +29,8 @@ server-impl/
 ## 실행 방법
 
 1. **DB 준비**
-   - MySQL 등 RDBMS에 `member`, `post` 테이블을 생성하세요.
-   - `src/main/resources/database.sql` 참고
+   - MySQL에 `member`, `post` 테이블을 생성.
+   - `database.sql` 참고
 
 2. **설정 파일 수정**
    - `src/main/resources/application.properties`에서 DB 접속 정보 등 환경설정
@@ -49,4 +49,4 @@ server-impl/
    - [http://localhost:8080/login.html](http://localhost:8080/login.html)
   
 
-- 최초 실행 시 DB 테이블이 없으면 에러가 발생할 수 있습니다. `database.sql` 참고하여 테이블을 생성하세요.
+- 최초 실행 시 DB 테이블이 없으면 에러가 발생. `database.sql` 참고하여 테이블을 생성.
